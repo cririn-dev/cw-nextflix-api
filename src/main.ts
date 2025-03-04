@@ -4,11 +4,18 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // อนุญาตให้ Frontend เรียก API ได้
+  //local
+  // app.enableCors({
+  //   origin: "http://localhost:3001",
+  //   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  //   credentials: true,
+  // });
+
+  //production
   app.enableCors({
-    origin: "http://localhost:3001", // อนุญาตเฉพาะ Frontend
+    origin: "https://cw-nextflix.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // ถ้าใช้ cookies หรือ headers ที่ต้องมี credentials
+    credentials: true,
   });
 
   await app.listen(3000);

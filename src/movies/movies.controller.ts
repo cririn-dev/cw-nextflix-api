@@ -15,7 +15,7 @@ export class MoviesController {
     async getMovies() {
         try {
             const response = await axios.get(`${this.API_URL}/popular`, {
-                headers: this.getHeaders(), // 🔹 ใช้ฟังก์ชัน getHeaders()
+                headers: this.getHeaders(),
             });
 
             return response.data.results;
@@ -29,7 +29,7 @@ export class MoviesController {
     async getMovieById(@Param('id') id: string) {
         try {
             const response = await axios.get(`${this.API_URL}/${id}`, {
-                headers: this.getHeaders(), // 🔹 ใช้ฟังก์ชัน getHeaders()
+                headers: this.getHeaders(),
             });
             return response.data;
         } catch (error) {
@@ -38,7 +38,6 @@ export class MoviesController {
         }
     }
 
-    // 🔹 ฟังก์ชันสำหรับสร้าง Headers ลดการซ้ำซ้อน
     private getHeaders() {
         return {
             Authorization: `Bearer ${this.API_TOKEN}`,
